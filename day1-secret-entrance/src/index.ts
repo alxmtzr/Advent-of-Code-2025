@@ -18,10 +18,10 @@ function parseInput(lines: string[]): Rotation[] {
       const dir = line[0] as Direction;
       const steps = parseInt(line.slice(1), 10);
       if (dir !== 'L' && dir !== 'R') {
-        throw new Error(`Ungültige Richtung in Zeile: "${line}"`);
+        throw new Error(`Invalid row: "${line}"`);
       }
       if (Number.isNaN(steps)) {
-        throw new Error(`Ungültige Schrittzahl in Zeile: "${line}"`);
+        throw new Error(`Invalid number in line: "${line}"`);
       }
       return { direction: dir, steps };
     });
