@@ -1,0 +1,26 @@
+{
+  "name": "advent-of-code-2025",
+  "version": "1.0.0",
+  "description": "Advent of Code 2025 Solutions in TypeScript",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "day1": "tsx src/day1-secret-entrance/index.ts",
+    "day2": "tsx src/day2-gift-shop/index.ts",
+    "day3": "tsx src/day3-lobby/index.ts",
+    "build": "tsc",
+    "build:watch": "tsc --watch",
+    "test": "echo \"No tests specified\" && exit 0"
+  },
+  "keywords": ["advent-of-code", "typescript", "puzzle", "2025"],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "ts-node": "^10.9.2",
+    "typescript": "^5.9.3"
+  },
+  "devDependencies": {
+    "@types/node": "^24.10.1",
+    "tsx": "^4.21.0"
+  }
+}

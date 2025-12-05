@@ -1,5 +1,4 @@
-
-import { readFileSync } from 'fs';
+import { readInput } from '../utils/InputReader.js';
 
 const START_POSITION: number = 50;
 
@@ -77,7 +76,7 @@ function passwordPart2(rotations: Rotation[], start: number = START_POSITION): n
 }
 
 function main() {
-  const lines: string[] = readFileSync('src/resources/input.txt', 'utf-8').trim().split('\n');
+  const lines: string[] = readInput.lines(1);
   const rotations = parseInput(lines);
 
   const part1 = passwordPart1(rotations);
