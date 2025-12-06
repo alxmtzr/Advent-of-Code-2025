@@ -50,6 +50,9 @@ export class InputReader {
     if (dayNumber === 3) {
       possibleFolders.push('src/day3-lobby');
     }
+    if (dayNumber === 4) {
+      possibleFolders.push('src/day4-printing-department');
+    }
 
     for (const folder of possibleFolders) {
       try {
@@ -66,21 +69,8 @@ export class InputReader {
 }
 
 export const readInput = {
-  /**
-   * Read input lines for a specific day
-   */
-  lines: (dayNumber: number, keepEmpty: boolean = false): string[] => 
+  lines: (dayNumber: number, keepEmpty: boolean = false) =>
     InputReader.forDay(dayNumber).readLines(keepEmpty),
-
-  /**
-   * Read raw input content for a specific day
-   */
-  raw: (dayNumber: number): string => 
-    InputReader.forDay(dayNumber).readRaw(),
-
-  /**
-   * Read comma-separated values for a specific day
-   */
-  commaSeparated: (dayNumber: number): string[] => 
-    InputReader.forDay(dayNumber).readCommaSeparated(),
+  raw: (dayNumber: number) => InputReader.forDay(dayNumber).readRaw(),
+  commaSeparated: (dayNumber: number) => InputReader.forDay(dayNumber).readCommaSeparated(),
 };
