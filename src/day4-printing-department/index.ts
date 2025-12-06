@@ -1,4 +1,4 @@
-import { readInput } from '../utils/InputReader';
+import { readInput } from '../utils/InputReader.js';
 
 function getPaperGrid(): string[][] {
     const lines = readInput.lines(4);

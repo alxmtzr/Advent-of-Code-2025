@@ -1,4 +1,4 @@
-import { readInput } from '../utils/InputReader';
+import { readInput } from '../utils/InputReader.js';
 
 interface Range {
     startRange: number;
