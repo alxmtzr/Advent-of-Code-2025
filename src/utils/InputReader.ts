@@ -47,6 +47,9 @@ export class InputReader {
     if (dayNumber === 2) {
       possibleFolders.push('src/day2-gift-shop');
     }
+    if (dayNumber === 3) {
+      possibleFolders.push('src/day3-lobby');
+    }
 
     for (const folder of possibleFolders) {
       try {
