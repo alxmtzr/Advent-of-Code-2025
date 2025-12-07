@@ -56,6 +56,9 @@ export class InputReader {
     if (dayNumber === 5) {
       possibleFolders.push('src/day5-cafeteria');
     }
+    if (dayNumber === 6) {
+      possibleFolders.push('src/day6-trash-compactor');
+    }
 
     for (const folder of possibleFolders) {
       try {
