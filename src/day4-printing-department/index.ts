@@ -14,7 +14,7 @@ function printPaperGrid(grid: string[][]) {
 }
 
 function calculateAmountOfRollsThatCanBeAccessed(): number {
-    const paperGrid: string[][] = getPaperGrid();
+    let paperGrid: string[][] = getPaperGrid();
     if (!paperGrid) return 0;
 
     let result = 0;
@@ -22,16 +22,16 @@ function calculateAmountOfRollsThatCanBeAccessed(): number {
     for (let i = 0; i < paperGrid.length; i++) {
         const row = paperGrid[i]!;
         for (let j = 0; j < row.length; j++) {
-            const cell = row[j]!;
+            let cell = row[j]!;
             if (hasCellRoll(cell)) {
                 const indexOfCell = { row: i, col: j };
                 if (rollCanBeAccessed(paperGrid, indexOfCell)) {
                     result++;
+                    paperGrid[i]![j] = 'x';
                 }
             }
         }
     }
-
 
     return result;
 }
@@ -65,10 +65,38 @@ function hasCellRoll(cell: string): boolean {
     return cell === "@";
 }
 
+function removeAllAccessibleRolls(): number {
+    let paperGrid: string[][] = getPaperGrid();
+    let totalRemoved = 0;
+    let removedThisRound: number;
+
+    do {
+        removedThisRound = 0;
+
+        for (let i = 0; i < paperGrid.length; i++) {
+            for (let j = 0; j < paperGrid[i]!.length; j++) {
+                if (hasCellRoll(paperGrid[i]![j]!)) {
+                    const indexOfCell = { row: i, col: j };
+                    if (rollCanBeAccessed(paperGrid, indexOfCell)) {
+                        paperGrid[i]![j] = 'x';
+                        removedThisRound++;
+                    }
+                }
+            }
+        }
+
+        totalRemoved += removedThisRound;
+    } while (removedThisRound > 0); 
+
+    return totalRemoved;
+}
 
 function main() {
     const resultPart1 = calculateAmountOfRollsThatCanBeAccessed();
-    console.log(`Part 1: Amount of roll that can be accessed: ${resultPart1}`);
+    console.log(`Part 1: Total mount of rolls that can be accessed: ${resultPart1}`);
+
+    const resultPart2 = removeAllAccessibleRolls();
+    console.log(`Part 2: Total amount of rolls that can be removed: ${resultPart2}`);
 }
 
 main();
