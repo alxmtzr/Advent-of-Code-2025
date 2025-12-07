@@ -9,6 +9,7 @@
     "day2": "tsx src/day2-gift-shop/index.ts",
     "day3": "tsx src/day3-lobby/index.ts",
     "day4": "tsx src/day4-printing-department/index.ts",
+    "day5": "tsx src/day5-cafeteria",
     "build": "tsc",
     "build:watch": "tsc --watch",
     "test": "echo \"No tests specified\" && exit 0"
