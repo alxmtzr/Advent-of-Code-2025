@@ -1,15 +1,16 @@
-import { readInput } from '../utils/InputReader.js';
+import { InputReader } from '../utils/InputReader.js';
 
 function getMathWorksheet() {
-    const lines = readInput.lines(6);
-    const numberLines = lines.slice(0, lines.length - 1);
-    const operatorLine = lines[lines.length - 1];
+    const reader = InputReader.forPath('src/day6-trash-compactor');
+    const lines = reader.readLines();
+    const numberLines = lines.slice(0, lines.length - 1); 
+    const operatorLine = lines[lines.length - 1]; 
 
     const workSheet: number[][] = numberLines.map(line =>
         line.trim().split(/\s+/).map(Number)
     );
 
-    const operators = operatorLine!.trim().split(/\s+/);
+    const operators = operatorLine!.trim().split(/\s+/); 
     return { workSheet, operators };
 }
 
@@ -31,7 +32,7 @@ function calculateGrandTotal(): number {
 }
 
 function solveMathProblem(operator: string, numbers: number[]): number {
-    switch (operator) {
+    switch(operator) {
         case '+': return numbers.reduce((sum, n) => sum + n, 0);
         case '*': return numbers.reduce((prod, n) => prod * n, 1);
         default: throw new Error(`Unknown operator: ${operator}`);
@@ -39,12 +40,15 @@ function solveMathProblem(operator: string, numbers: number[]): number {
 }
 
 function calculateGrandTotalPart2(): number {
-    const lines = readInput.lines(6);
+    const reader = InputReader.forPath('src/day6-trash-compactor');
+    const lines = reader.readLines();
     const maxLength = Math.max(...lines.map(line => line.length));
+    
     const charGrid: string[][] = [];
     for (const line of lines) {
         charGrid.push(line.padEnd(maxLength, ' ').split(''));
     }
+    
     // rotate array left 90 degrees
     const rotatedGrid: string[][] = [];
     for (let col = maxLength - 1; col >= 0; col--) {
@@ -54,38 +58,45 @@ function calculateGrandTotalPart2(): number {
         }
         rotatedGrid.push(newRow);
     }
-    const problems: { numbers: number[], operator: string }[] = [];
+    
+    const problems: {numbers: number[], operator: string}[] = [];
     let currentNumbers: number[] = [];
+    
     for (const row of rotatedGrid) {
         const operator = row[row.length - 1]?.trim(); // operator is in last column
 
         const digitChars = row.slice(0, row.length - 1);
         const numberStr = digitChars.join('').trim();
+        
         if (numberStr && numberStr !== '') {
             const number = parseInt(numberStr);
             if (!isNaN(number)) {
                 currentNumbers.push(number);
             }
         }
+        
         // create problem if operator found
         if (operator && operator !== '') {
             if (currentNumbers.length > 0) {
-                problems.push({ numbers: currentNumbers, operator: operator });
+                problems.push({numbers: currentNumbers, operator: operator});
                 currentNumbers = [];
             }
         }
     }
+    
     let total = 0;
     for (const problem of problems) {
         const result = solveMathProblem(problem.operator, problem.numbers);
         total += result;
     }
+    
     return total;
 }
 
 function main() {
     const resultPart1 = calculateGrandTotal();
     console.log(`Part 1: ${resultPart1}`);
+    
     const resultPart2 = calculateGrandTotalPart2();
     console.log(`Part 2: ${resultPart2}`);
 }

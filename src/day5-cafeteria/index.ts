@@ -1,4 +1,4 @@
-import { readInput } from '../utils/InputReader.js';
+import { InputReader } from '../utils/InputReader.js';
 
 interface IdRange {
     startRange: number,
@@ -6,7 +6,8 @@ interface IdRange {
 }
 
 function parseInput() {
-    const lines = readInput.lines(5, true); // keepEmpty = true -> keep empty line
+    const reader = InputReader.forPath('src/day5-cafeteria');
+    const lines = reader.readLines(true); // keepEmpty = true -> keep empty line
     const emptyLineIndex = lines.findIndex(line => line === '');
 
     // fill ranges

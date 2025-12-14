@@ -1,8 +1,9 @@
-import { readInput } from '../utils/InputReader.js';
+import { InputReader } from '../utils/InputReader.js';
 
 
 function getBanks(): string[] {
-    return readInput.lines(3);
+    const reader = InputReader.forPath('src/day3-lobby');
+    return reader.readLines();
 }
 
 function calculateTotalOutputJoltage(numOfTurnedOnBatteries: number): number {

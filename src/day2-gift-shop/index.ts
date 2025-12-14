@@ -1,4 +1,4 @@
-import { readInput } from '../utils/InputReader.js';
+import { InputReader } from '../utils/InputReader.js';
 
 interface Range {
     startRange: number;
@@ -13,7 +13,8 @@ function parseInput(input: string[]): Range[] {
 }
 
 function getRanges(): Range[] {
-    return parseInput(readInput.commaSeparated(2));
+    const reader = InputReader.forPath('src/day2-gift-shop');
+    return parseInput(reader.readCommaSeparated());
 }
 
 function isInvalidIDWhenRepeatedTwice(id: number): boolean {

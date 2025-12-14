@@ -1,7 +1,8 @@
-import { readInput } from '../utils/InputReader.js';
+import { InputReader } from '../utils/InputReader.js';
 
 function getPaperGrid(): string[][] {
-    const lines = readInput.lines(4);
+    const reader = InputReader.forPath('src/day4-printing-department');
+    const lines = reader.readLines();
     const grid: string[][] = lines.map((line: string) => line.split(''));
 
     return grid;
