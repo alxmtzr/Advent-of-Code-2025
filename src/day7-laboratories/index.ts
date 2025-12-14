@@ -1,12 +1,9 @@
 import { InputReader } from '../utils/InputReader.js';
 
-
 function readTachyonManifold(): string[][] {
     const reader = InputReader.forPath('src/day7-laboratories');
     const lines = reader.readLines();
-
-    const manifold: string[][] = lines.map(line => line.split('')); 
-    return manifold;
+    return lines.map(line => line.split('')); 
 }
 
 function printManifold(manifold: string[][]): void {
@@ -25,8 +22,8 @@ function getTotalSplitCount(): number {
         for (let j = 0; j < columns; j++) {
             const currentValue = manifold[i]![j];
             if (currentValue === 'S' || currentValue === '|') {
-
                 const nextValue = manifold[i + 1]![j];
+
                 if (beamCanAdvance(nextValue!)) {
                     manifold[i + 1]![j] = '|';
                 }
@@ -39,10 +36,11 @@ function getTotalSplitCount(): number {
         }
     }
 
-    printManifold(manifold);
+/*     printManifold(manifold); */
     return result;
 }
 
+// helpers part 1
 function splitBeam(rowIndex: number, columnIndex: number, manifold: string[][]) {
     const nextRow = rowIndex + 1;
     if (nextRow >= manifold.length) return manifold;
@@ -68,9 +66,47 @@ function beamEncountersSplitter(value: string): boolean {
     return value === '^';
 }
 
+// part 2
+function getTotalTimelineCount(): number {
+    const manifold = readTachyonManifold();
+    const startCol = manifold[0]!.indexOf('S');
+
+    const timelineCache = new Map<string, number>();
+
+    function recurse(row: number, col: number): number {
+        const rows = manifold.length;
+        const columns = manifold[0]!.length;
+
+        if (row >= rows || col < 0 || col >= columns) return 1; // if outside of matrix, timeline is finished
+
+        const key = `${row},${col}`;
+        if (timelineCache.has(key)) return timelineCache.get(key)!;
+
+        const cell = manifold[row]![col];
+        let total = 0;
+
+        if (cell === '^') {
+            // split beam: beide Wege
+            if (col > 0) total += recurse(row + 1, col - 1);
+            if (col < columns - 1) total += recurse(row + 1, col + 1);
+        } else {
+            // beam goes straight down
+            total = recurse(row + 1, col);
+        }
+
+        timelineCache.set(key, total);
+        return total;
+    }
+
+    return recurse(1, startCol); 
+}
+
 function main() {
     const resultPart1 = getTotalSplitCount();
     console.log(`Part 1: Total split count: ${resultPart1}`);
+
+    const resultPart2 = getTotalTimelineCount();
+    console.log(`Part 2: Total timeline count: ${resultPart2}`);
 }
 
 main();
