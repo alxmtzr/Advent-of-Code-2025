@@ -16,14 +16,11 @@ Each day includes a new programming puzzle, and I solve them here using TypeScri
 - [Day 5: Cafeteria](https://adventofcode.com/2025/day/5)
 - [Day 6: Trash Compactor](https://adventofcode.com/2025/day/6)
 - [Day 7: Laboratories](https://adventofcode.com/2025/day/7)
-- [Not solved - Day 8: Playground](https://adventofcode.com/2025/day/8)
+- [Day 8: Playground](https://adventofcode.com/2025/day/8)
 - [Not solved - Day 9: Movie Theaterc](https://adventofcode.com/2025/day/9)
 - [Not solved - Day 10: Factory](https://adventofcode.com/2025/day/10)
 - [Not solved - Day 11: Reactor](https://adventofcode.com/2025/day/11)
 - [Not solved - Day 12: Christmas Tree Farm](https://adventofcode.com/2025/day/12)
-
-## Progress
-<img src="assets/progress.png" alt="Progress" width="500" style="border-radius: 12px;">
 
 
 ## Structure

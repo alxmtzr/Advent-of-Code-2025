@@ -22,7 +22,7 @@ function getJunctionBoxes(): Point[] {
     });
 }
 
-function calculateSizesOfThreeLargestCircuits(): number {
+function part1(): number {
     const points = getJunctionBoxes();
     const edges: Edge[] = calculateDistances(points);
     edges.sort((a, b) => a.dist - b.dist); // sort ascending dist
@@ -63,9 +63,35 @@ function calculateDistances(points: Point[]): Edge[] {
     return edges;
 }
 
+function part2(): number {
+    const points = getJunctionBoxes();
+    const edges = calculateDistances(points);
+    edges.sort((a, b) => a.dist - b.dist);
+
+    const circuitManager = new CircuitManager(points.length);
+
+    let lastEdge: Edge | null = null;
+
+    for (const edge of edges) {
+        const merged = circuitManager.connect(edge.a, edge.b);
+        if (merged) lastEdge = edge; // store last edge which connects points
+
+        // check if all points are connected
+        if (circuitManager.size[circuitManager.find(edge.a)] === points.length) {
+            break;
+        }
+    }
+
+    return points[lastEdge!.a]!.x * points[lastEdge!.b]!.x;
+}
+
+
 function main() {
-    const resultPart1 = calculateSizesOfThreeLargestCircuits();
+    const resultPart1 = part1();
     console.log(`Part 1: Sizes of three largest curcuits multiplied together: ${resultPart1}`);
+
+    const resultPart2 = part2();
+    console.log(`Part 2: X coordinates of the last two junction boxes you need to connect multiplied together: ${resultPart2}`);
 }
 
 main();
