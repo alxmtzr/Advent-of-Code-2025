@@ -12,7 +12,8 @@
     "day5": "tsx src/day5-cafeteria/index.ts",
     "day6": "tsx src/day6-trash-compactor/index.ts",
     "day7": "tsx src/day7-laboratories/index.ts",
-    "all": "npm run day1 && npm run day2 && npm run day3 && npm run day4 && npm run day5 && npm run day6 && npm run day7",
+    "day8": "tsx src/day8-playground/index.ts",
+    "all": "npm run day1 && npm run day2 && npm run day3 && npm run day4 && npm run day5 && npm run day6 && npm run day7 && npm run day8",
     "build": "tsc",
     "build:watch": "tsc --watch",
     "test": "echo \"No tests specified\" && exit 0"
